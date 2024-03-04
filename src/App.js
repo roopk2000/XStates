@@ -51,10 +51,13 @@ const CitySelector = () => {
 
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
+    setSelectedState('');
+    setSelectedCity('');
   };
 
   const handleStateChange = (event) => {
     setSelectedState(event.target.value);
+    setSelectedCity('');
   };
 
   const handleCityChange = (event) => {
@@ -81,11 +84,7 @@ const CitySelector = () => {
           <option key={city} value={city}>{city}</option>
         ))}
       </select>
-      <div>
-        {selectedCountry && selectedState && selectedCity &&
-          `You selected ${selectedCity}, ${selectedState}, ${selectedCountry}`
-        }
-      </div>
+      <div>{selectedCountry && selectedState && selectedCity && `You selected ${selectedCity}, ${selectedState}, ${selectedCountry}`}</div>
     </div>
   );
 };
