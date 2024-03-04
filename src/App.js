@@ -7,6 +7,7 @@ const CitySelector = () => {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedState, setSelectedState] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -56,6 +57,10 @@ const CitySelector = () => {
     setSelectedState(event.target.value);
   };
 
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
+
   return (
     <div>
       <select onChange={handleCountryChange} value={selectedCountry}>
@@ -70,13 +75,17 @@ const CitySelector = () => {
           <option key={state} value={state}>{state}</option>
         ))}
       </select>
-      <select>
+      <select onChange={handleCityChange} value={selectedCity}>
         <option value="">Select City</option>
         {cities.map((city) => (
           <option key={city} value={city}>{city}</option>
         ))}
       </select>
-      <div>{selectedCountry && selectedState && `You selected ${cities}, ${selectedState}, ${selectedCountry}`}</div>
+      <div>
+        {selectedCountry && selectedState && selectedCity &&
+          `You selected ${selectedCity}, ${selectedState}, ${selectedCountry}`
+        }
+      </div>
     </div>
   );
 };
